@@ -1,0 +1,21 @@
+# Ignore environment files
+.env
+
+# Ignore compiled Python files
+__pycache__/
+*.pyc
+*.pyo
+
+# Ignore Virtual Environment (venv)
+venv/
+env/
+
+# Ignore database files (jika menggunakan SQLite)
+db.sqlite3
+
+# Ignore logs
+*.log
+
+# Ignore IDE settings (misal untuk VS Code, PyCharm)
+.vscode/
+.idea/

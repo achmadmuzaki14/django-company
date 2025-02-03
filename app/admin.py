@@ -1,5 +1,13 @@
 from django.contrib import admin
-from app.models import GeneralInfo, Service, Testimonial, FrequentlyAskedQuestion, ContactFormLog
+from app.models import (
+    GeneralInfo, 
+    Service, 
+    Testimonial, 
+    FrequentlyAskedQuestion, 
+    ContactFormLog,
+    Blog,
+    Author
+) 
 
 # Register your models here.
 @admin.register(GeneralInfo)
@@ -68,3 +76,24 @@ class ContactFormLogAdmin(admin.ModelAdmin):
 
     def has_delete_permission(self, request, obj=None):
         return False
+
+@admin.register(Author)
+class AuthorAdmin(admin.ModelAdmin):
+
+    # displays selected fields
+    list_display = [
+        'first_name',
+        'last_name',
+    ]
+
+@admin.register(Blog)
+class BlogAdmin(admin.ModelAdmin):
+
+    # displays selected fields
+    list_display = [
+        'category',
+        'author',
+        'title',
+        'blog_image',
+        'created_at',
+    ]

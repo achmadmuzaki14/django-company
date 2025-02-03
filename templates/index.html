@@ -26,63 +26,6 @@
             <!-- End Service Item -->
             {% endfor %}
 
-            {% comment %} <div class="col-lg-4 col-md-6">
-                <div class="service-item position-relative">
-                    <div class="icon">
-                        <i class="bi bi-broadcast"></i>
-                    </div>
-                    <h3>Public Relations Powerhouse</h3>
-                    <p>Shape your narrative and build strong relationships with our public relations expertise. From
-                        crafting compelling press releases to managing crisis communications, we help you maintain a
-                        positive public image.</p>
-                </div>
-            </div><!-- End Service Item -->
-
-            <div class="col-lg-4 col-md-6">
-                <div class="service-item position-relative">
-                    <div class="icon">
-                        <i class="bi bi-easel"></i>
-                    </div>
-                    <h3>Creative Design Solutions</h3>
-                    <p>Unleash the potential of visually stunning design. Our creative team specializes in crafting
-                        compelling graphics, logos, and branding materials that captivate your audience.</p>
-                </div>
-            </div><!-- End Service Item -->
-
-            <div class="col-lg-4 col-md-6">
-                <div class="service-item position-relative">
-                    <div class="icon">
-                        <i class="bi bi-bounding-box-circles"></i>
-                    </div>
-                    <h3>Web Development Wizardry</h3>
-                    <p>Transform your digital footprint with our expert web development services. Whether you need a
-                        responsive website, e-commerce platform, or custom web application.</p>
-                </div>
-            </div><!-- End Service Item -->
-
-            <div class="col-lg-4 col-md-6">
-                <div class="service-item position-relative">
-                    <div class="icon">
-                        <i class="bi bi-calendar4-week"></i>
-                    </div>
-                    <h3>Data Analytics Excellence</h3>
-                    <p>Unlock the power of data with our advanced analytics services. From gathering valuable insights
-                        to making data-driven decisions, our analytics team is equipped to turn raw data into actionable
-                        intelligence.</p>
-                </div>
-            </div><!-- End Service Item -->
-
-            <div class="col-lg-4 col-md-6">
-                <div class="service-item position-relative">
-                    <div class="icon">
-                        <i class="bi bi-chat-square-text"></i>
-                    </div>
-                    <h3>Strategic Consultancy Services</h3>
-                    <p>Navigate the complexities of business with our strategic consultancy services. We offer tailored
-                        solutions to optimize your operations, enhance efficiency, and fuel sustainable growth.</p>
-                </div>
-            </div><!-- End Service Item --> {% endcomment %}
-
         </div>
 
     </div>
@@ -183,82 +126,36 @@
         </div>
 
         <div class="row gy-4">
+            {% for blog in recent_blog %}
+                <div class="col-xl-4 col-md-6">
+                    <article>
 
-            <div class="col-xl-4 col-md-6">
-                <article>
-
-                    <div class="post-img">
-                        <img src="{% static 'assets/img/blog/blog-1.jpg' %} " alt="" class="img-fluid">
-                    </div>
-
-                    <p class="post-category">Politics</p>
-
-                    <h2 class="title">
-                        <a href="blog-details.html">The Shifting Tides: Navigating the Complex World of Politics</a>
-                    </h2>
-
-                    <div class="d-flex align-items-center">
-                        <div class="post-meta">
-                            <p class="post-author">Maria Doe</p>
-                            <p class="post-date">
-                                <time datetime="2022-01-01">Jan 1, 2022</time>
-                            </p>
+                        <div class="post-img">
+                            {% if "http" in blog.blog_image %}
+                                <img src="{{ blog.blog_image }}" alt="" class="img-fluid">
+                            {% else %}
+                                <img src="{% static blog.blog_image %}" alt="" class="img-fluid">
+                            {% endif %}
                         </div>
-                    </div>
 
-                </article>
-            </div><!-- End post list item -->
+                        <p class="post-category">{{ blog.category }}</p>
 
-            <div class="col-xl-4 col-md-6">
-                <article>
+                        <h2 class="title">
+                            <a href="{% url 'blog_detail' blog_id=blog.id %}">{{ blog.title }}</a>
+                        </h2>
 
-                    <div class="post-img">
-                        <img src="{% static 'assets/img/blog/blog-2.jpg' %} " alt="" class="img-fluid">
-                    </div>
-
-                    <p class="post-category">Sports</p>
-
-                    <h2 class="title">
-                        <a href="blog-details.html">Game On: Exploring the Thrills and Triumphs of the Sporting
-                            World</a>
-                    </h2>
-
-                    <div class="d-flex align-items-center">
-                        <div class="post-meta">
-                            <p class="post-author">Allisa Mayer</p>
-                            <p class="post-date">
-                                <time datetime="2022-01-01">Jun 5, 2022</time>
-                            </p>
+                        <div class="d-flex align-items-center">
+                            <div class="post-meta">
+                                <p class="post-author">{{ blog.author.first_name }} {{ blog.author.last_name }}</p>
+                                <p class="post-date">
+                                    <time datetime="2022-01-01">{{ blog.created_at|date:"M j, Y"}}</time>
+                                </p>
+                            </div>
                         </div>
-                    </div>
 
-                </article>
-            </div><!-- End post list item -->
-
-            <div class="col-xl-4 col-md-6">
-                <article>
-
-                    <div class="post-img">
-                        <img src="{% static 'assets/img/blog/blog-3.jpg' %} " alt="" class="img-fluid">
-                    </div>
-
-                    <p class="post-category">Entertainment</p>
-
-                    <h2 class="title">
-                        <a href="blog-details.html">Spotlight Chronicles: Unveiling the World of Entertainment</a>
-                    </h2>
-
-                    <div class="d-flex align-items-center">
-                        <div class="post-meta">
-                            <p class="post-author">Mark Dower</p>
-                            <p class="post-date">
-                                <time datetime="2022-01-01">Jun 22, 2022</time>
-                            </p>
-                        </div>
-                    </div>
-
-                </article>
-            </div><!-- End post list item -->
+                    </article>
+                </div><!-- End post list item -->
+            {% endfor %}
 
         </div><!-- End recent posts list -->
 

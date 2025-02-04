@@ -1,5 +1,8 @@
 asgiref==3.8.1
 certifi==2025.1.31
 Django==5.1.5
+django-ckeditor==6.7.2
+django-js-asset==3.0.1
 python-decouple==3.8
 sqlparse==0.5.3
+whitenoise==6.8.2
